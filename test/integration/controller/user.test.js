@@ -5,6 +5,7 @@ const { mockAsync, RESPONSE, USER, FILE } = require("../../util/");
 describe("UserController", () => {
   it("Deve criar usuário com sucesso", async () => {
 
+    const uploadStub = mockAsync(sails.helpers, "upload", "url");
     const databaseStub = mockAsync(Users, "create", true);
     const req = {
       body: USER,
@@ -22,7 +23,7 @@ describe("UserController", () => {
     const findOneStub = mockAsync(Users, "findOne", USER);
     const req = {
       body: {
-        email: "",
+        email: "arthur@gmail.com",
         password: "password123",
       },
     };
